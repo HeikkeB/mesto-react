@@ -10,16 +10,16 @@ function AvatarPopup({ isOpen, onClose }) {
       isOpen={isOpen}
       onClose={onClose}
       children={
-        <section class="popup__section-avatar" aria-label="строка ввода">
+        <section className="popup__section-avatar" aria-label="строка ввода">
           <input
             id="avatar"
             type="url"
-            class="popup__input popup__input_link"
+            className="popup__input popup__input_link"
             name="avatar"
             placeholder="Ссылка на картинку"
             required
           />
-          <span class="popup__input-error" id="avatar-error"></span>
+          <span className="popup__input-error" id="avatar-error"></span>
         </section>
       }
     />

@@ -196,22 +196,22 @@ function App() {
           </div>
         </div>*/}
 
-        <template class="template">
-          <li class="element">
-            <img class="element__img" />
-            <div class="element__description">
-              <h2 class="element__title"></h2>
-              <div class="element__like-container">
+        <template className="template">
+          <li className="element">
+            <img className="element__img" />
+            <div className="element__description">
+              <h2 className="element__title"></h2>
+              <div className="element__like-container">
                 <button
-                  class="element__btn-like"
+                  className="element__btn-like"
                   type="button"
                   aria-label="Нравится"
                 ></button>
-                <p class="element__like-counter">0</p>
+                <p className="element__like-counter">0</p>
               </div>
 
               <button
-                class="element__btn-delete"
+                className="element__btn-delete"
                 type="button"
                 aria-label="Удалить"
               ></button>

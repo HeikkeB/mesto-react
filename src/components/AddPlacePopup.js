@@ -18,8 +18,8 @@ function AddPlacePopup({ isOpen, onClose }) {
               className="popup__input popup__input_place"
               name="name"
               placeholder="Название"
-              minlength="2"
-              maxlength="30"
+              minLength="2"
+              maxLength="30"
               required
             />
             <span className="popup__input-error" id="name-error"></span>

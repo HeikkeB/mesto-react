@@ -18,8 +18,8 @@ function EditProfilePopup({ isOpen, onClose }) {
               className="popup__input popup__input_name"
               name="user"
               placeholder="Имя"
-              minlength="2"
-              maxlength="40"
+              minLength="2"
+              maxLength="40"
               required
             />
             <span className="popup__input-error" id="username-error"></span>
@@ -31,8 +31,8 @@ function EditProfilePopup({ isOpen, onClose }) {
               className="popup__input popup__input_profession"
               name="profession"
               placeholder="Занятие"
-              minlength="2"
-              maxlength="200"
+              minLength="2"
+              maxLength="200"
               required
             />
             <span className="popup__input-error" id="userinfo-error"></span>
