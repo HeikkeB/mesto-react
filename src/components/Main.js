@@ -1,5 +1,6 @@
 import api from '../utils/Api'
 import React from 'react'
+import Card from './Card'
 
 function Main(props) {
   const [userName, setUserName] = React.useState('')
@@ -14,6 +15,14 @@ function Main(props) {
         setUserName(evt.name)
         setUserDescription(evt.about)
         setUserAvatar(evt.avatar)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    api
+      .getInitialCards()
+      .then((res) => {
+        setCards(res)
       })
       .catch((err) => {
         console.log(err)
@@ -45,7 +54,11 @@ function Main(props) {
       </section>
 
       <section className="elements" aria-label="Фотографии">
-        <ul className="elements__list"></ul>
+        <ul className="elements__list">
+          {cards.map((card) => (
+            <Card key={card._id} card={card} onCardClick={props.onCardClick} />
+          ))}
+        </ul>
       </section>
     </main>
   )

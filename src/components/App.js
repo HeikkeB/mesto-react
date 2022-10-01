@@ -5,12 +5,13 @@ import Footer from './Footer'
 import AvatarPopup from './AvatarPopup'
 import EditProfilePopup from './EditProfilePopup'
 import AddPlacePopup from './AddPlacePopup'
+import ImagePopup from './ImagePopup'
 
 function App() {
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
-    React.useState(false)
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState('')
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState('')
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState('')
+  const [selectedCard, setSelectedCard] = React.useState('')
 
   function handleEditAvatarClick() {
     setEditAvatarPopupOpen(true)
@@ -25,9 +26,14 @@ function App() {
   }
 
   function closeAllPopups() {
-    setEditAvatarPopupOpen(false)
-    setEditProfilePopupOpen(false)
-    setAddPlacePopupOpen(false)
+    setEditAvatarPopupOpen('')
+    setEditProfilePopupOpen('')
+    setAddPlacePopupOpen('')
+    setSelectedCard('')
+  }
+
+  function handleCardClick(card) {
+    setSelectedCard(card)
   }
 
   return (
@@ -38,6 +44,7 @@ function App() {
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
+          onCardClick={handleCardClick}
         />
 
         <Footer />
@@ -49,6 +56,7 @@ function App() {
         />
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
 
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         {/*<div className="popup popup_type_add">
           <div className="popup__container">
             <button
@@ -196,7 +204,7 @@ function App() {
           </div>
         </div>*/}
 
-        <template className="template">
+        {/*<template className="template">
           <li className="element">
             <img className="element__img" />
             <div className="element__description">
@@ -217,7 +225,7 @@ function App() {
               ></button>
             </div>
           </li>
-        </template>
+        </template>*/}
       </div>
     </div>
   )
