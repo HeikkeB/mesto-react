@@ -1,18 +1,55 @@
+import React from 'react'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
+import AvatarPopup from './AvatarPopup'
+import EditProfilePopup from './EditProfilePopup'
+import AddPlacePopup from './AddPlacePopup'
 
 function App() {
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] =
+    React.useState(false)
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
+
+  function handleEditAvatarClick() {
+    setEditAvatarPopupOpen(true)
+  }
+
+  function handleEditProfileClick() {
+    setEditProfilePopupOpen(true)
+  }
+
+  function handleAddPlaceClick() {
+    setAddPlacePopupOpen(true)
+  }
+
+  function closeAllPopups() {
+    setEditAvatarPopupOpen(false)
+    setEditProfilePopupOpen(false)
+    setAddPlacePopupOpen(false)
+  }
+
   return (
     <div className="App">
       <div className="page">
         <Header />
-
-        <Main />
+        <Main
+          onEditAvatar={handleEditAvatarClick}
+          onEditProfile={handleEditProfileClick}
+          onAddPlace={handleAddPlaceClick}
+        />
 
         <Footer />
 
-        <div className="popup popup_type_image-add">
+        <AvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        />
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
+
+        {/*<div className="popup popup_type_add">
           <div className="popup__container">
             <button
               className="popup__closed popup__closed_add"
@@ -54,9 +91,9 @@ function App() {
               </button>
             </form>
           </div>
-        </div>
+        </div>*/}
 
-        <div className="popup popup_type_profile-edit">
+        {/*<div className="popup popup_type_edit">
           <div className="popup__container">
             <button
               className="popup__closed popup__closed_edit"
@@ -102,19 +139,7 @@ function App() {
               </button>
             </form>
           </div>
-        </div>
-
-        <div className="popup popup_gallery-background popup_type_image-gallery">
-          <div className="popup__gallery">
-            <button
-              className="popup__closed popup__closed_gallery"
-              type="button"
-              aria-label="Закрыть"
-            ></button>
-            <img className="popup__gallery-img" />
-            <p className="popup__gallery-description"></p>
-          </div>
-        </div>
+        </div>*/}
 
         <div className="popup popup_type_confirm">
           <div className="popup__container">
@@ -135,7 +160,7 @@ function App() {
           </div>
         </div>
 
-        <div className="popup popup_type_avatar">
+        {/*<div className="popup popup_type_avatar">
           <div class="popup__container">
             <button
               class="popup__closed popup__closed_avatar"
@@ -169,7 +194,7 @@ function App() {
               </button>
             </form>
           </div>
-        </div>
+        </div>*/}
 
         <template class="template">
           <li class="element">
