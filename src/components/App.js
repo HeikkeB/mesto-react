@@ -37,7 +37,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="body">
       <div className="page">
         <Header />
         <Main
@@ -57,25 +57,6 @@ function App() {
         <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-
-        {/*<div className="popup popup_type_confirm">
-          <div className="popup__container">
-            <button
-              className="popup__closed popup__closed_confirm"
-              type="button"
-              aria-label="Закрыть"
-            ></button>
-            <h2 className="popup__title popup__title-confirm">Вы уверены?</h2>
-            <form className="popup__form">
-              <button
-                className="popup__submit-btn popup__submit-btn_type_confirm"
-                type="submit"
-              >
-                Да
-              </button>
-            </form>
-          </div>
-        </div>*/}
       </div>
     </div>
   )
