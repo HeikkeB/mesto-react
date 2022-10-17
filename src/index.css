@@ -31,6 +31,8 @@
 @import url(./blocks/element/__btn-like/element__btn-like.css);
 @import url(./blocks/element/__btn-like/_active/element__btn-like_active.css);
 @import url(./blocks/element/__like-counter/element__like-counter.css);
+@import url(./blocks/element/__btn-delete/_visible/element__btn-delete_visible.css);
+@import url(./blocks/element/__btn-delete/_hidden/element__btn-delete_hidden.css);
 @import url(./blocks/element/__btn-delete/element__btn-delete.css);
 
 @import url(./blocks/footer/footer.css);
