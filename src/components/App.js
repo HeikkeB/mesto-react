@@ -15,12 +15,24 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState('')
   const [selectedCard, setSelectedCard] = React.useState('')
   const [currentUser, setCurrentUser] = React.useState({})
+  const [cards, setCards] = React.useState([])
 
   React.useEffect(() => {
     api
       .getUserInfo()
       .then((data) => {
         setCurrentUser(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  React.useEffect(() => {
+    api
+      .getInitialCards()
+      .then((res) => {
+        setCards(res)
       })
       .catch((err) => {
         console.log(err)
@@ -73,18 +85,6 @@ function App() {
         console.log(err)
       })
   }
-
-  const [cards, setCards] = React.useState([])
-  React.useEffect(() => {
-    api
-      .getInitialCards()
-      .then((res) => {
-        setCards(res)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id)
