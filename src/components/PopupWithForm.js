@@ -1,7 +1,6 @@
 function PopupWithForm({
   name,
   isOpen,
-  container,
   onClose,
   title,
   onSubmit,
@@ -20,7 +19,7 @@ function PopupWithForm({
         <h2 className="popup__title">{title}</h2>
         <form className={`popup__form popup__form_${name}`} onSubmit={onSubmit}>
           {children}
-          <button className="popup__submit-btn" type="submit" disabled>
+          <button className="popup__submit-btn" type="submit">
             {buttonText || 'Сохранить'}
           </button>
         </form>

@@ -2,7 +2,7 @@ import React from 'react'
 import Header from './Header'
 import Main from './Main'
 import Footer from './Footer'
-import AvatarPopup from './AvatarPopup'
+import EditAvatarPopup from './EditAvatarPopup'
 import EditProfilePopup from './EditProfilePopup'
 import AddPlacePopup from './AddPlacePopup'
 import ImagePopup from './ImagePopup'
@@ -50,6 +50,18 @@ function App() {
     setSelectedCard(card)
   }
 
+  function handleUpdateUser(newData) {
+    api
+      .setUserInfo(newData)
+      .then((data) => {
+        setCurrentUser(data)
+        closeAllPopups()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <currentUserContext.Provider value={currentUser}>
       <div className="body">
@@ -64,13 +76,14 @@ function App() {
 
           <Footer />
 
-          <AvatarPopup
+          <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
+            onUpdateUser={handleUpdateUser}
           />
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
