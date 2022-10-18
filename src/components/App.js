@@ -76,16 +76,6 @@ function App() {
 
   const [cards, setCards] = React.useState([])
   React.useEffect(() => {
-    // api
-    // .getUserInfo()
-    // .then((evt) => {
-    //   setUserName(evt.name)
-    //   setUserDescription(evt.about)
-    //   setUserAvatar(evt.avatar)
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-    // })
     api
       .getInitialCards()
       .then((res) => {
@@ -124,11 +114,10 @@ function App() {
       })
   }
 
-  function handleAddPlaceSubmit(newCard) {
+  function handleAddPlaceSubmit(newData) {
     api
-      .addNewCard(newCard)
-      .then((data) => {
-        setCurrentUser(data)
+      .addNewCard(newData)
+      .then((newCard) => {
         setCards([newCard, ...cards])
         closeAllPopups()
       })
