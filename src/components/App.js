@@ -62,12 +62,90 @@ function App() {
       })
   }
 
+  function handleUpdateAvatar(newData) {
+    api
+      .updateAvatar(newData)
+      .then((data) => {
+        setCurrentUser(data)
+        closeAllPopups()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const [cards, setCards] = React.useState([])
+  React.useEffect(() => {
+    // api
+    // .getUserInfo()
+    // .then((evt) => {
+    //   setUserName(evt.name)
+    //   setUserDescription(evt.about)
+    //   setUserAvatar(evt.avatar)
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // })
+    api
+      .getInitialCards()
+      .then((res) => {
+        setCards(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  function handleCardLike(card) {
+    const isLiked = card.likes.some((i) => i._id === currentUser._id)
+
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) =>
+          state.map((c) => (c._id === card._id ? newCard : c))
+        )
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  function handleCardDelete(card) {
+    api
+      .deleteCard(card._id)
+      .then(() => {
+        setCards((state) =>
+          state.filter((c) => (c._id === card._id ? false : true))
+        )
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  function handleAddPlaceSubmit(newCard) {
+    api
+      .addNewCard(newCard)
+      .then((data) => {
+        setCurrentUser(data)
+        setCards([newCard, ...cards])
+        closeAllPopups()
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
   return (
     <currentUserContext.Provider value={currentUser}>
       <div className="body">
         <div className="page">
           <Header />
           <Main
+            cards={cards}
+            onCardLike={handleCardLike}
+            onCardDelete={handleCardDelete}
             onEditAvatar={handleEditAvatarClick}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
@@ -79,6 +157,7 @@ function App() {
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
+            onUpdateAvatar={handleUpdateAvatar}
           />
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
@@ -88,6 +167,7 @@ function App() {
           <AddPlacePopup
             isOpen={isAddPlacePopupOpen}
             onClose={closeAllPopups}
+            onAddPlace={handleAddPlaceSubmit}
           />
 
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />

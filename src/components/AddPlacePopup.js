@@ -1,6 +1,31 @@
 import PopupWithForm from './PopupWithForm'
+import React from 'react'
 
-function AddPlacePopup({ isOpen, onClose }) {
+function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
+  const [name, setName] = React.useState('')
+  const [link, setLink] = React.useState('')
+
+  React.useEffect(() => {
+    setName('')
+    setLink('')
+  }, [isOpen])
+
+  function handleChangePlace(evt) {
+    setName(evt.target.value)
+  }
+
+  function handleChangeLink(evt) {
+    setLink(evt.target.value)
+  }
+
+  function handleSubmit(evt) {
+    evt.preventDefault()
+    onAddPlace({
+      name,
+      link,
+    })
+  }
+
   return (
     <PopupWithForm
       title="Новое место"
@@ -9,6 +34,7 @@ function AddPlacePopup({ isOpen, onClose }) {
       buttonText="Создать"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={handleSubmit}
     >
       <>
         <section className="popup__section" aria-label="строка ввода">
@@ -21,6 +47,8 @@ function AddPlacePopup({ isOpen, onClose }) {
             minLength="2"
             maxLength="30"
             required
+            onChange={handleChangePlace}
+            value={name || ''}
           />
           <span className="popup__input-error" id="name-error"></span>
         </section>
@@ -32,6 +60,8 @@ function AddPlacePopup({ isOpen, onClose }) {
             name="link"
             placeholder="Ссылка на картинку"
             required
+            onChange={handleChangeLink}
+            value={link || ''}
           />
           <span className="popup__input-error" id="link-error"></span>
         </section>
