@@ -6,8 +6,8 @@
 
 ## Использованные технологии
 
-- HTML5
-- CSS
+![https://img.shields.io/badge/-HTML5-orange](https://img.shields.io/badge/-HTML5-orange)
+![https://img.shields.io/badge/-CSS-informational](https://img.shields.io/badge/-CSS-informational)
 - grid
 - flexbox
 - адаптивная верстка с помощью media-queries
